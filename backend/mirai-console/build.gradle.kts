@@ -150,5 +150,6 @@ fun Project.setupTesterPluginSources() {
             }
             timeout.set(Duration.ofMinutes(5))
         }
+        tasks.getByName("check").dependsOn("runTerminalDaemon")
     }
 }
