@@ -13,7 +13,6 @@ plugins {
     kotlin("jvm")
     id("java")
     `maven-publish`
-    id("com.jfrog.bintray")
 
     id("org.jetbrains.intellij") version Versions.intellijGradlePlugin
 }
@@ -59,6 +58,13 @@ tasks.getByName("publishPlugin", org.jetbrains.intellij.tasks.PublishTask::class
 
 fun File.resolveMkdir(relative: String): File {
     return this.resolve(relative).apply { mkdirs() }
+}
+
+kotlin.target.compilations.all {
+    kotlinOptions {
+        apiVersion = "1.4"
+        languageVersion = "1.4"
+    }
 }
 
 tasks.withType<org.jetbrains.intellij.tasks.PatchPluginXmlTask> {
